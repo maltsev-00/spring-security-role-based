@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Maltsev</title>
+    <style>
+        span {
+            font-size: 1em;
+            border-bottom: 1px dotted red;
+            zoom: 1.5; /* for easier readability */
+        }
+
+        span svg {
+            fill: #3b5998;
+            height: 1em;
+
+            vertical-align: -0.1875em;
+        }
+
+        body {
+            font-family: Roboto, serif;
+            font-style: normal;
+        }
+
+        .card {
+            width: 340px;
+            height: 370px;
+            /*background: #FFFFFF;*/
+            /*border-radius: 4px;*/
+        }
+
+        .card-content {
+            padding: 15px 15px 20px;
+
+        }
+
+        .container {
+            margin: 40px;
+            padding-left: 215px;
+        }
+
+        #parent {
+            width: 100%;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        .child {
+            display: inline-block;
+            font-family: Montserrat, serif;
+
+        }
+
+        .text-option {
+            font-family: Montserrat, serif;
+        }
+
+        .text {
+            font-weight: bold;
+        }
+
+        .close-swg {
+            position: absolute;
+            left: 300px;
+            height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+        <svg class="d-inline-block align-top" width="30" height="30" viewBox="0 0 30 30" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <g id="account_balance_24px">
+                <path id="icon/action/account_balance_24px" fill-rule="evenodd" clip-rule="evenodd"
+                      d="M3.125 8.75L15 2.5L26.875 8.75V11.25H3.125V8.75ZM15 5.325L21.5125 8.75H8.48751L15 5.325ZM6.25 13.75H8.75V22.5H6.25V13.75ZM13.75 22.5V13.75H16.25V22.5H13.75ZM26.875 27.5V25H3.125V27.5H26.875ZM21.25 13.75H23.75V22.5H21.25V13.75Z"
+                      fill="black" fill-opacity="0.54"/>
+            </g>
+        </svg>
+        Maltsev
+    </a>
+    <form class="form-inline my-2 my-lg-0">
+        <a class="text-light" href="/logout" th:href="@{/logout}">Log out</a>
+    </form>
+</nav>
+<div class="container px-4 py-1" id="hanging-icons">
+    <h2 class="">Комментарии</h2>
+    <p class="text-option">Здесь вы можете просмотреть все комментрарии для файла</p>
+
+    <div class="row g-1 py-3 row-cols-2 row-cols-lg-2">
+        <div th:each="obj : ${comments}">
+            <div class="col d-flex align-items-start">
+                <div>
+                    <svg class="bi" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g id="drafts_24px">
+                            <path id="icon/content/drafts_24px" fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M21.99 9.5C21.99 8.78 21.62 8.14999 21.05 7.79999L12 2.5L2.95 7.79999C2.38 8.14999 2 8.78 2 9.5V19.5C2 20.6 2.89999 21.5 4 21.5H20C21.1 21.5 22 20.6 22 19.5L21.99 9.5ZM19.99 9.5V9.51001L12 14.5L4 9.5L12 4.82001L19.99 9.5ZM4 11.84V19.5H20L19.99 11.87L12 16.86L4 11.84Z"
+                                  fill="black" fill-opacity="0.54"/>
+                        </g>
+                    </svg>
+                    <span th:text="${obj.email}"></span>
+
+                    <p th:text="${obj.message}"></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
