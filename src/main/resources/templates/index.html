@@ -1,53 +1,211 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-
-<title>Registration</title>
+    <title>Maltsev</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
-					Login Module</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+<style>
+    body {
+        font-family: Roboto, serif;
+        font-style: normal;
+    }
 
-	<br>
-	<br>
-	<div class="container">
-		<h2>User Registration and Login Module using Spring Boot, Spring
-			MVC, Spring Security, JPA/Hibernate and Thymeleaf</h2>
+    .card {
+        width: 360px;
+        height: 510px;
+        /*background: #FFFFFF;*/
+        /*border-radius: 4px;*/
+    }
 
-		<p>
-			Welcome <span sec:authentication="principal.username">User</span>
-		</p>
-	</div>
+    .card-content {
+        padding: 15px 15px 20px;
 
-	<script type="text/javascript"
-		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-	<script type="text/javascript"
-		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    }
+
+    .container {
+        margin: 40px;
+        padding-left: 215px;
+    }
+
+    #parent {
+        width: 100%;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
+    .child {
+        display: inline-block;
+        font-family: Montserrat, serif;
+
+    }
+
+    .text-option {
+        font-family: Montserrat, serif;
+    }
+
+    .text {
+        font-weight: bold;
+    }
+
+    .close-swg {
+        position: absolute;
+        left: 330px;
+        height: 40px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .search {
+        position: absolute;
+    }
+
+    .search-body {
+        position: absolute;
+        left: 830px;
+    }
+</style>
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand">
+        <svg class="d-inline-block align-top" width="30" height="30" viewBox="0 0 30 30" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <g id="account_balance_24px">
+                <path id="icon/action/account_balance_24px" fill-rule="evenodd" clip-rule="evenodd"
+                      d="M3.125 8.75L15 2.5L26.875 8.75V11.25H3.125V8.75ZM15 5.325L21.5125 8.75H8.48751L15 5.325ZM6.25 13.75H8.75V22.5H6.25V13.75ZM13.75 22.5V13.75H16.25V22.5H13.75ZM26.875 27.5V25H3.125V27.5H26.875ZM21.25 13.75H23.75V22.5H21.25V13.75Z"
+                      fill="black" fill-opacity="0.54"/>
+            </g>
+        </svg>
+        Maltsev
+    </a>
+    <form class="form-inline my-2 my-lg-0">
+        <a class="text-light" href="/logout" th:href="@{/logout}">Log out</a>
+    </form>
+</nav>
+<div class="container">
+    <h1 class="text-option">Сосредоточьтесь на действительно важных делах</h1>
+    <div class="text-option">Забудьте о хаосе в документах, постоянных задержках, трудностях с координацией действий —
+        откройте для себя
+        более эффективный способ работы! Maltsev помогает пользователям систематизировать данные, синхронизировать свои
+        действия с другими участниками рабочей группы, а также обеспечить безопасность рабочего процесса.
+    </div>
+
+    <hr>
+    <span style="float:left;">
+
+    <form th:action="@{/upload}" enctype="multipart/form-data" method="post">
+        <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="file" class="sr-only">Выбрать файл</label>
+                <input id="file" type="file" name="file"/>
+                <input class="btn btn-primary " type="submit" value="Загрузить"/>
+            </div>
+        </form>
+    </form>
+</span>
+    <span style="float:right;">
+        <div class="search-body">
+       <form th:action="@{/search}" th:object="${search}" method="post">
+
+<form class="form-inline">
+            <div class="form-group mx-sm-1 ">
+                Поиск&nbsp;
+                <label>
+<input type="text" class="form-control" th:field="*{name}"/>
+</label>&nbsp;
+                <button type="submit" class="btn btn-primary search">Найти</button>
+            </div>
+    </form>
+           </form>
+            </div>
+</span>
+    <br>
+    <br>
+    <hr>
+
+    <div class="card-deck">
+        <div th:each="obj : ${pathList}">
+            <div class="card">
+                <div class="image-card">
+                    <svg width="226" height="204" viewBox="0 0 226 204" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g id="file_copy_24px">
+                            <path id="icon/content/file_copy_24px" fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M155.375 8.5H42.375C32.0167 8.5 23.5417 16.15 23.5417 25.5V144.5H42.375V25.5H155.375V8.5ZM145.958 42.5H80.0417C69.6833 42.5 61.3025 50.15 61.3025 59.5L61.2083 178.5C61.2083 187.85 69.5892 195.5 79.9475 195.5H183.625C193.983 195.5 202.458 187.85 202.458 178.5V93.5L145.958 42.5ZM80.0417 59.5V178.5H183.625V102H136.542V59.5H80.0417Z"
+                                  fill="black" fill-opacity="0.54"/>
+                        </g>
+                    </svg>
+                    <a th:href="@{/delete-file/{id}(id=${obj.id})}">
+                        <svg class="close-swg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g id="clear_24px">
+                                <path id="icon/content/clear_24px"
+                                      d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                                      fill="black" fill-opacity="0.54"/>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card-content">
+
+                    <div id="parent">
+                        <div class="child text">Имя</div>
+                        <div class="child" th:text=" ${obj.name}"></div>
+                    </div>
+                    <div id="parent">
+                        <div class="child text">Тип</div>
+                        <div class="child" th:text="${obj.infoFile.getType()}"></div>
+                    </div>
+
+                    <div id="parent">
+                        <div class="child text">Время добавления</div>
+                        <div class="child" th:text="${obj.infoFile.getTime()}"></div>
+                    </div>
+
+                    <div id="parent">
+                        <div class="child text">Владелец</div>
+                        <div class="child" th:text="${obj.infoFile.getUsername()}"></div>
+                    </div>
+
+                    <div id="parent">
+
+                        <div class="child" th:if="${obj.getPrivacy()} == true">
+                            <a class="child" th:href="@{/privacy/{id}(id=${obj.id})}">закрыть доступ&nbsp;</a>
+                            <p class="child">&nbsp;|&nbsp;</p>
+                            <a class="child" th:href="@{/download/{id}(id=${obj.id})}">&nbsp;скачать</a>
+                            <p class="child">&nbsp;|&nbsp;</p>
+                            <a class="child" th:href="@{/comment/{id}(id=${obj.id})}">&nbsp;комментарии</a>
+                        </div>
+
+                        <div class="child" th:if="${obj.getPrivacy()} == false">
+                            <a class="child" th:href="@{/privacy/{id}(id=${obj.id})}">открыть доступ&nbsp;</a>
+                            <p class="child">&nbsp;|&nbsp;</p>
+                            <a class="child" th:href="@{/download/{id}(id=${obj.id})}">&nbsp;скачать</a>
+                            <p class="child">&nbsp;|&nbsp;</p>
+                            <a class="child" th:href="@{/comment/{id}(id=${obj.id})}">&nbsp;комментарии</a>
+                        </div>
+
+                    </div>
+                    <form th:action="@{/comment/new/{id}(id=${obj.id})}" th:object="${comment}" method="post">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" th:field="*{message}" id="commentInput"
+                                   aria-describedby="commentHelp">
+                            <div id="commentHelp" class="form-text">Вы можете оставить комментарий под этим файлом</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

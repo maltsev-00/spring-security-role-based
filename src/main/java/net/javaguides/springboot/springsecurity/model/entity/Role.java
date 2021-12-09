@@ -1,4 +1,4 @@
-package net.javaguides.springboot.springsecurity.model;
+package net.javaguides.springboot.springsecurity.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Role {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

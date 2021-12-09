@@ -1,4 +1,4 @@
-package net.javaguides.springboot.springsecurity.web.dto;
+package net.javaguides.springboot.springsecurity.model.dto;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;

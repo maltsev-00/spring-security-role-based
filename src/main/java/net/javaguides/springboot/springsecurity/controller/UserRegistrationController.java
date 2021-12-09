@@ -1,8 +1,8 @@
-package net.javaguides.springboot.springsecurity.web;
+package net.javaguides.springboot.springsecurity.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import net.javaguides.springboot.springsecurity.model.User;
+import net.javaguides.springboot.springsecurity.model.entity.User;
 import net.javaguides.springboot.springsecurity.service.UserService;
-import net.javaguides.springboot.springsecurity.web.dto.UserRegistrationDto;
+import net.javaguides.springboot.springsecurity.model.dto.UserRegistrationDto;
 
 @Controller
 @RequestMapping("/registration")
+@RequiredArgsConstructor
 public class UserRegistrationController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
